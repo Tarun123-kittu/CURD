@@ -3,14 +3,15 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
 const ChartView = () => {
     const [days_of_week, setDays_of_week] = useState([]);
     const [total_guest, setTotal_guest] = useState([]);
     const [total_timeout, setTotal_timeout] = useState([]);
-    const [isDataLoaded, setIsDataLoaded] = useState(false);  // New state to track if data is loaded
+    const [isDataLoaded, setIsDataLoaded] = useState(false);
     const [startDate, setStartDate] = useState();
     const [endDate, setEndDate] = useState();
-    const [search, setSearch] = useState(false)
+    const [search, setSearch] = useState(false);
 
     const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
         <input
@@ -64,11 +65,17 @@ const ChartView = () => {
                 setDays_of_week(result.map(item => item?.DayOfWeek?.slice(0, 3)));
                 setTotal_guest(result.map(item => parseFloat(item?.TotalGuests)));
                 setTotal_timeout(result.map(item => parseFloat(item?.TotalTimeoutHours)));
-                setIsDataLoaded(true);  // Data is now loaded
-                setSearch(false)
+                setIsDataLoaded(true);
+                setSearch(false);
+            } else {
+                setDays_of_week([]);
+                setTotal_guest([]);
+                setTotal_timeout([]);
+                setIsDataLoaded(true);
             }
         } catch (error) {
             console.error('Error fetching data:', error);
+            setIsDataLoaded(true);  // Ensure that data loading state is set even on error
         }
     };
 
@@ -162,9 +169,8 @@ const ChartView = () => {
         }]
     };
 
+    console.log(startDate, endDate, "this is the start date and end date");
 
-
-    console.log(startDate, endDate, "this is the start date and end date")
     return (
         <div className='bg_wrapper'>
             <div className="date_range_outer d-flex mb-3">
@@ -177,7 +183,11 @@ const ChartView = () => {
                 <button className="button_search ms-auto" onClick={() => startDate && endDate && setSearch(true)}>Search</button>
             </div>
             {isDataLoaded ? (
-                <HighchartsReact highcharts={Highcharts} options={options} />
+                days_of_week.length > 0 && total_guest.length > 0 && total_timeout.length > 0 ? (
+                    <HighchartsReact highcharts={Highcharts} options={options} />
+                ) : (
+                    <p>No data found.</p>
+                )
             ) : (
                 <p>Loading chart data...</p>
             )}
