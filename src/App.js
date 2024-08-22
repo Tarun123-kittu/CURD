@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import React, { useState } from "react";
 import './App.css';
 
+import "react-datepicker/dist/react-datepicker.css";
+import Dashboard from "./dashboard";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Dashboard />
+      {/* <div className="date_range">
+        <span className="date_end">Date From</span>
+        <DatePicker className="date_picker" selected={startDate ? startDate : new Date()} customInput={<CustomInput />} onChange={(date) => setStartDate(date)} />
+        <span className="date_end">Date To</span>
+        <DatePicker className="date_picker" selected={endDate ? endDate : new Date()} customInput={<CustomInput />} onChange={(date) => setEndDate(date)} />
+        <button className="button_search" onClick={() => startDate && endDate && setSearch(true)}>Search</button>
+      </div> */}
+      {/* <div className='barGraph'>
+        <ChartView startDate={startDate} endDate={endDate} search={search} />
+      </div> */}
     </div>
   );
 }

@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -35,4 +39,43 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.barGraph {
+  width: 100%;
+  max-width: 60%;
+  margin: auto;
+}
+
+.date_range{
+  display: flex;
+  margin: 20px;
+}
+
+.date_end{
+  font-weight: 700;
+}
+.bg_wrapper {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+}
+.date_picker {
+  height: 27px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid grey;
+  text-align: center;
+}
+
+button.button_search {
+  padding: 6px 17px;
+  background-color: #46bdc6;
+  color: antiquewhite;
+  border: none;
+  border-radius: 6px;
+}
+
+text.highcharts-credits {
+  display: none;
 }

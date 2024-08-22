@@ -1,0 +1,52 @@
+.sidebar_wrapper {
+    height: 100vh;
+    position: fixed;
+    background: #F9F9F9;
+    width: 248px;
+    left: 0;
+}
+ .sidebar_list{
+    list-style: none;
+    padding: 0px 20px;
+
+ }
+.list_wrapper{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 15px;
+    padding: 10px 15px;
+    
+}
+.logo_img{
+    padding-top: 35px;
+    width: 186px;
+}
+.active_class{
+    background: #90D6DC;
+    border-radius: 10px;
+}
+.list_wrapper h3{
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Montserrat", sans-serif;
+    margin-bottom: 0px;
+}
+.user_profile{
+    color: #555B6D;
+    font-size: 14px;
+    font-weight: 300;
+
+}
+.user_info {
+    margin-top: 30px;
+    justify-content: center;
+}
+.list_wrapper svg{
+    font-size: 24px;
+}
+.sidebar_list li:last-child{
+    position: fixed;
+    bottom: 10px;
+    width: 200px;
+}

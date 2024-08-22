@@ -1,0 +1,201 @@
+section.dashboard_wrapper {
+    padding-left: 248px;
+    width: 100%;
+}
+.dashboard_container {
+    padding: 32px;
+    background-color: #ecf1f2;
+    
+}
+.dashboard_content{
+    margin-top: 40px;
+}
+.dateIcon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.search_box{
+    background: white;
+    width: 100%;
+    border-radius: 10PX;
+
+}
+.search_box input{
+    border: none;
+ 
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    margin-left: 32px;
+}
+.search_outer{
+    position: relative;
+}
+h3.Properties_heading {
+    font-size: 33px;
+    font-weight: 700;
+}
+h6.key_stone_heading {
+    color: #ADB5BD;
+    font-size: 20px;
+    font-weight: 700;
+}
+.search_icon{
+    position: absolute;
+    top: 13px;
+    left: 11px;
+}
+.search_box input:focus-visible {
+    outline:unset;
+}
+.revenue_outer{
+    justify-content: space-between;
+}
+.revenue_wrapper {
+    width: 100%;
+    border-radius: 15px;
+    padding: 20px;
+
+}
+.Opportunities_wrapper{
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    padding: 23px;
+    min-height: 284px;
+    width: 335px;
+}
+.cmn_small_font{
+    font-size: 16px;
+    font-weight: 600;
+
+}
+div#uncontrolled-tab-example-tabpane-profile {
+    background: transparent;
+}
+.opportunity_outer{
+    margin-top: 20px;
+    justify-content: space-between;
+}
+.date_range{
+    background-color: #2A3042;
+    border-radius: 6px;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    margin-right: 12px;
+
+}
+.cmn_large_font{
+    font-size: 17px;
+    font-weight: 600;
+}
+.revenue_outer svg{
+    color: white;
+}
+.content_outer{
+    gap: 25px;
+
+}
+.yellow_bg{
+    background: #F1B44C;
+}
+.green_bg{
+   background-color:  #34C38F
+}
+.red_bg{
+    background-color: 
+    #F46A6A;
+}
+.add_icon{
+    font-size: 34px;
+    color: black;
+}
+.revenue_content h3{
+    font-size: 14px;
+    margin-bottom: 0px;
+    font-weight: 600;
+}
+.revenue_heading{
+    padding-top: 22px;
+
+}
+.custom_tabs li.nav-item button {
+    color: #A6B0CF;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.custom_tabs.nav-tabs .nav-item.show .nav-link, .custom_tabs.nav-tabs .nav-link.active{
+    border-bottom: 2px solid black !important;
+    border-radius: unset;
+    border-top: unset;
+    border-left: unset;
+    border-right: unset;
+    border-color: black !important;
+    background-color:transparent;
+}
+.custom_tabs .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
+    isolation: unset !important;
+    border-color: transparent  !important;
+}
+.nav-link:focus-visible{
+    box-shadow: unset !important;
+}
+.custom_tabs{
+    border-bottom: 1px solid #A6B0CF;
+
+}
+.custom_tabs li:focus-visible {
+    outline: unset !important;
+} 
+.custom_tabs li{
+    background-color: transparent !important;
+}
+.notification_outer{
+    border-radius: 15px;
+    background-color: white;
+    width: 51px;
+    border: 1px solid #ECF1F2;
+    height: 41px;
+    border-radius: 10px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.notification_outer{
+    font-size: 20px;
+    text-align: center;
+}
+.header_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (min-width:1800px) {
+    .revenue_content h3 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width:1280px) {
+    h3.Properties_heading {
+        font-size: 24px;
+    }
+    h6.key_stone_heading {
+        color: #ADB5BD;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width:1024px){
+    .content_outer{
+        flex-wrap: wrap;
+    }
+}
+@media screen and (max-width:991px) {
+    h3.Properties_heading {
+        font-size: 20px;
+    }
+   
+}
