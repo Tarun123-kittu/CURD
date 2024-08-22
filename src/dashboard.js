@@ -117,10 +117,10 @@ const Dashboard = () => {
                                 Tab content for Home
                             </Tab>
                             <Tab eventKey="profile" title="Visitors">
-                                <div className='dateIcon'>
+                                {/* <div className='dateIcon'>
                                     <button className='date_range'>Date Range</button>
                                     <IoMdAddCircle className='add_icon' />
-                                </div>
+                                </div> */}
                                 <div className='garphWrapper'>
                                     <ChartView />
                                 </div>

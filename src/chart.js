@@ -45,9 +45,9 @@ const ChartView = () => {
     const fetchResult = async () => {
         let url;
         if (search && startDate && endDate) {
-            url = `http://localhost:8000/api/weekly-summary?startDate=${formatDateToYYYYMMDD(startDate)}&endDate=${formatDateToYYYYMMDD(endDate)}`
+            url = `13.233.101.106:8000/api/weekly-summary?startDate=${formatDateToYYYYMMDD(startDate)}&endDate=${formatDateToYYYYMMDD(endDate)}`
         } else {
-            url = "http://localhost:8000/api/weekly-summary";
+            url = "13.233.101.106:8000/api/weekly-summary";
         }
 
         const myHeaders = new Headers();
