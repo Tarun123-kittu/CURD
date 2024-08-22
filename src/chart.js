@@ -9,8 +9,8 @@ const ChartView = () => {
     const [total_guest, setTotal_guest] = useState([]);
     const [total_timeout, setTotal_timeout] = useState([]);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+    const [startDate, setStartDate] = useState("05/06/2024");
+    const [endDate, setEndDate] = useState("03/06/2024");
     const [search, setSearch] = useState(false);
     const [error, setError] = useState(null);  // State to track errors
 
