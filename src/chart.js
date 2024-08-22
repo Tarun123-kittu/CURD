@@ -9,9 +9,10 @@ const ChartView = () => {
     const [total_guest, setTotal_guest] = useState([]);
     const [total_timeout, setTotal_timeout] = useState([]);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
     const [search, setSearch] = useState(false);
+    const [error, setError] = useState(null);  // State to track errors
 
     const CustomInput = React.forwardRef(({ value, onClick }, ref) => (
         <input
@@ -22,8 +23,6 @@ const ChartView = () => {
             style={{ cursor: 'pointer' }}
         />
     ));
-
-    console.log(days_of_week, total_guest, total_timeout, "this is the dates");
 
     function formatDateToYYYYMMDD(date) {
         const d = new Date(date);
@@ -46,12 +45,15 @@ const ChartView = () => {
     const fetchResult = async () => {
         let url;
         if (search && startDate && endDate) {
-            url = `13.233.101.106:8000/api/weekly-summary?startDate=${formatDateToYYYYMMDD(startDate)}&endDate=${formatDateToYYYYMMDD(endDate)}`
+            url = `http://13.233.101.106:8000/api/weekly-summary?startDate=${formatDateToYYYYMMDD(startDate)}&endDate=${formatDateToYYYYMMDD(endDate)}`;
         } else {
-            url = "13.233.101.106:8000/api/weekly-summary";
+            url = "http://13.233.101.106:8000/api/weekly-summary?startDate=2024-05-06&endDate=2024-06-03";
         }
 
-        const myHeaders = new Headers();
+        const myHeaders = new Headers({
+            'Content-Type': 'application/json',
+        });
+
         const requestOptions = {
             method: "GET",
             headers: myHeaders,
@@ -60,22 +62,25 @@ const ChartView = () => {
 
         try {
             const response = await fetch(url, requestOptions);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
             const result = await response.json();
             if (result?.length > 0) {
                 setDays_of_week(result.map(item => item?.DayOfWeek?.slice(0, 3)));
                 setTotal_guest(result.map(item => parseFloat(item?.TotalGuests)));
                 setTotal_timeout(result.map(item => parseFloat(item?.TotalTimeoutHours)));
                 setIsDataLoaded(true);
-                setSearch(false);
+                setError(null);  // Clear any previous errors
             } else {
-                setDays_of_week([]);
-                setTotal_guest([]);
-                setTotal_timeout([]);
-                setIsDataLoaded(true);
+                setIsDataLoaded(false);
+                setError("No data found for the selected date range.");
             }
+            setSearch(false);
         } catch (error) {
             console.error('Error fetching data:', error);
-            setIsDataLoaded(true);  // Ensure that data loading state is set even on error
+            setIsDataLoaded(false);
+            setError("Failed to fetch data. Please try again later.");
         }
     };
 
@@ -169,25 +174,36 @@ const ChartView = () => {
         }]
     };
 
-    console.log(startDate, endDate, "this is the start date and end date");
-
     return (
         <div className='bg_wrapper'>
             <div className="date_range_outer d-flex mb-3">
                 <div className='d-flex align-items-center gap-3'>
                     <span className="date_end">Date From</span>
-                    <DatePicker className="date_picker" selected={startDate ? startDate : new Date()} customInput={<CustomInput />} onChange={(date) => setStartDate(date)} />
+                    <DatePicker
+                        className="date_picker"
+                        selected={startDate ? startDate : new Date()}
+                        customInput={<CustomInput />}
+                        onChange={(date) => setStartDate(date)}
+                    />
                     <span className="date_end">Date To</span>
-                    <DatePicker className="date_picker" selected={endDate ? endDate : new Date()} customInput={<CustomInput />} onChange={(date) => setEndDate(date)} />
+                    <DatePicker
+                        className="date_picker"
+                        selected={endDate ? endDate : new Date()}
+                        customInput={<CustomInput />}
+                        onChange={(date) => setEndDate(date)}
+                    />
                 </div>
-                <button className="button_search ms-auto" onClick={() => startDate && endDate && setSearch(true)}>Search</button>
+                <button
+                    className="button_search ms-auto"
+                    onClick={() => startDate && endDate && setSearch(true)}
+                >
+                    Search
+                </button>
             </div>
-            {isDataLoaded ? (
-                days_of_week.length > 0 && total_guest.length > 0 && total_timeout.length > 0 ? (
-                    <HighchartsReact highcharts={Highcharts} options={options} />
-                ) : (
-                    <p>No data found.</p>
-                )
+            {error ? (
+                <p>{error}</p>
+            ) : isDataLoaded ? (
+                <HighchartsReact highcharts={Highcharts} options={options} />
             ) : (
                 <p>Loading chart data...</p>
             )}
